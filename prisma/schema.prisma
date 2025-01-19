@@ -12,3 +12,23 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+enum ProductCategoryType {
+  Lanche
+  Acompanhamento
+  Bebida
+  Sobremesa
+}
+
+model Product {
+  id              String   @id @default(cuid())
+  name            String
+  category        ProductCategoryType
+  price           Float
+  description     String
+  imageUrl        String
+  isAvailable     Boolean
+  preparationTime Int
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
