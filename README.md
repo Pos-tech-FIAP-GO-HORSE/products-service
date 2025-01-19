@@ -8,9 +8,11 @@ This is a microservice for managing products.
 
 - Node.js
 - TypeScript
+- Express
 - Prisma
 - MySQL
 - Docker
+- Swagger
 
 ## Installation
 
