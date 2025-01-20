@@ -21,7 +21,8 @@ enum ProductCategoryType {
 }
 
 model Product {
-  id              String   @id @default(cuid())
+  id              Int      @id @default(autoincrement())
+  publicId        String   @unique @default(cuid())
   name            String
   category        ProductCategoryType
   price           Float

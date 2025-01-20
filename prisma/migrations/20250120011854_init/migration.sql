@@ -1,6 +1,7 @@
 -- CreateTable
 CREATE TABLE `Product` (
-    `id` VARCHAR(191) NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `publicId` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
     `category` ENUM('Lanche', 'Acompanhamento', 'Bebida', 'Sobremesa') NOT NULL,
     `price` DOUBLE NOT NULL,
@@ -11,5 +12,6 @@ CREATE TABLE `Product` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
+    UNIQUE INDEX `Product_publicId_key`(`publicId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
