@@ -21,15 +21,15 @@ enum ProductCategoryType {
 }
 
 model Product {
-  id              Int      @id @default(autoincrement())
-  publicId        String   @unique @default(cuid())
-  name            String
-  category        ProductCategoryType
-  price           Float
-  description     String
-  imageUrl        String
-  isAvailable     Boolean
+  id             String   @id @default(cuid())
+  publicId       String   @unique
+  name           String
+  category       ProductCategoryType
+  price          Float
+  description    String
+  imageUrl       String
+  isAvailable    Boolean
   preparationTime Int
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
