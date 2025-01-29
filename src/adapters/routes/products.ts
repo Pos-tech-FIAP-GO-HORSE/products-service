@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { ProductController } from "../controllers/productController";
+import { Router } from 'express';
+import { ProductController } from '../controllers/productController';
 
 const router = Router();
 
@@ -33,9 +33,27 @@ const router = Router();
  *     responses:
  *       201:
  *         description: Product created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 product:
+ *                   $ref: '#/components/schemas/Product'
  *       400:
  *         description: Validation error or other issue
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 error:
+ *                   type: string
  */
-router.post("/", ProductController.createProduct);
+router.post('/', ProductController.createProduct);
 
 export default router;
