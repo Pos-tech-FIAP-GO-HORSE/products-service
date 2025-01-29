@@ -8,22 +8,22 @@ const productRepository = new PrismaProductRepository();
 const createProductUseCase = new CreateProductUseCase(productRepository);
 
 async function createProduct(req: Request, res: Response) {
-	try {
-		const productData = req.body;
-		const product = await createProductUseCase.execute(productData);
+  try {
+    const productData = req.body;
+    const product = await createProductUseCase.execute(productData);
 
-		res.status(HTTP_STATUS.CREATED).json({
-			message: MESSAGES.PRODUCT_CREATED,
-			product,
-		});
-	} catch (error) {
-		res.status(HTTP_STATUS.BAD_REQUEST).json({
-			message: MESSAGES.ERROR_CREATING_PRODUCT,
-			error: (error as Error).message,
-		});
-	}
+    res.status(HTTP_STATUS.CREATED).json({
+      message: MESSAGES.PRODUCT_CREATED,
+      product,
+    });
+  } catch (error) {
+    res.status(HTTP_STATUS.BAD_REQUEST).json({
+      message: MESSAGES.ERROR_CREATING_PRODUCT,
+      error: (error as Error).message,
+    });
+  }
 }
 
 export const ProductController = {
-	createProduct,
+  createProduct,
 };
