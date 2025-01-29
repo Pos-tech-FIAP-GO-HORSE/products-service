@@ -62,7 +62,12 @@ describe('PrismaProductRepository', () => {
   });
 
   it('should retrieve a product by ID', async () => {
-    const product = { id: '1', name: 'X-Burger', category: 'Lanche', price: 10.5 };
+    const product = {
+      id: '1',
+      name: 'X-Burger',
+      category: 'Lanche',
+      price: 10.5,
+    };
 
     mockFindUnique.mockResolvedValueOnce(product);
 
@@ -78,7 +83,9 @@ describe('PrismaProductRepository', () => {
     const result = await repository.getById('non-existent-id');
 
     expect(result).toBeNull();
-    expect(mockFindUnique).toHaveBeenCalledWith({ where: { id: 'non-existent-id' } });
+    expect(mockFindUnique).toHaveBeenCalledWith({
+      where: { id: 'non-existent-id' },
+    });
   });
 
   it('should retrieve products by category', async () => {
@@ -91,6 +98,8 @@ describe('PrismaProductRepository', () => {
     const result = await repository.getByCategory('Lanche');
 
     expect(result).toEqual(products);
-    expect(mockFindMany).toHaveBeenCalledWith({ where: { category: 'Lanche' } });
+    expect(mockFindMany).toHaveBeenCalledWith({
+      where: { category: 'Lanche' },
+    });
   });
 });

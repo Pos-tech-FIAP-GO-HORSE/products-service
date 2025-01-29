@@ -7,4 +7,4 @@ export class GetProductsByCategoryUseCase {
   async execute(category: Product['category']): Promise<Product[]> {
     return this.productRepository.getByCategory(category);
   }
-} 
+}

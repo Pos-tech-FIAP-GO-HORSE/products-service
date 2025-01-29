@@ -6,7 +6,9 @@ import type { Product, ProductCategoryType } from '../domain/entities/product';
 const mockProductRepository = mock<ProductRepository>();
 
 describe('GetProductsByCategoryUseCase', () => {
-  const getProductsByCategoryUseCase = new GetProductsByCategoryUseCase(mockProductRepository);
+  const getProductsByCategoryUseCase = new GetProductsByCategoryUseCase(
+    mockProductRepository,
+  );
 
   it('should return products for a given category', async () => {
     const category = 'Lanche' as keyof typeof ProductCategoryType;
@@ -40,8 +42,8 @@ describe('GetProductsByCategoryUseCase', () => {
       new Error('Error fetching products'),
     );
 
-    await expect(getProductsByCategoryUseCase.execute(category)).rejects.toThrow(
-      'Error fetching products',
-    );
+    await expect(
+      getProductsByCategoryUseCase.execute(category),
+    ).rejects.toThrow('Error fetching products');
   });
-}); 
+});

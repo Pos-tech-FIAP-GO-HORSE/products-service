@@ -6,7 +6,9 @@ import type { Product } from '../domain/entities/product';
 const mockProductRepository = mock<ProductRepository>();
 
 describe('GetProductByIdUseCase', () => {
-  const getProductByIdUseCase = new GetProductByIdUseCase(mockProductRepository);
+  const getProductByIdUseCase = new GetProductByIdUseCase(
+    mockProductRepository,
+  );
 
   it('should return a product when found', async () => {
     const productId = '1';
@@ -53,4 +55,4 @@ describe('GetProductByIdUseCase', () => {
       'Error fetching product',
     );
   });
-}); 
+});
