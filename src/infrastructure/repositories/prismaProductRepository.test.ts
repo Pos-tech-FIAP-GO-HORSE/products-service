@@ -110,5 +110,5 @@ describe('PrismaProductRepository', () => {
     await repository.delete('1');
 
     expect(mockDelete).toHaveBeenCalledWith({ where: { id: '1' } });
-  }); 
+  });
 });
