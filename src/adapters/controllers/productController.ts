@@ -4,6 +4,7 @@ import { CreateProductUseCase } from '../../usecases/createProductUseCase';
 import { GetAllProductsUseCase } from '../../usecases/getAllProductsUseCase';
 import { GetProductByIdUseCase } from '../../usecases/getProductByIdUseCase';
 import { GetProductsByCategoryUseCase } from '../../usecases/getProductsByCategoryUseCase';
+import { DeleteProductUseCase } from '../../usecases/deleteProductUseCase';
 import type { ProductCategoryType } from '../../domain/entities/product';
 import { HTTP_STATUS } from '../../constants/httpStatusCodes';
 import { MESSAGES } from '../../constants/messages';
@@ -15,6 +16,7 @@ const getProductByIdUseCase = new GetProductByIdUseCase(productRepository);
 const getProductsByCategoryUseCase = new GetProductsByCategoryUseCase(
   productRepository,
 );
+const deleteProductUseCase = new DeleteProductUseCase(productRepository);
 
 async function createProduct(req: Request, res: Response) {
   try {
@@ -90,9 +92,24 @@ async function getProductsByCategory(req: Request, res: Response) {
   }
 }
 
+async function deleteProduct(req: Request, res: Response) {
+  try {
+    const { id } = req.params;
+    await deleteProductUseCase.execute(id);
+
+    res.status(HTTP_STATUS.NO_CONTENT).send();
+  } catch (error) {
+    res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({
+      message: MESSAGES.ERROR_DELETING_PRODUCT,
+      error: (error as Error).message,
+    });
+  }
+}
+
 export const ProductController = {
   createProduct,
   getAllProducts,
   getProductById,
   getProductsByCategory,
+  deleteProduct,
 };
