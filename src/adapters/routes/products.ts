@@ -147,4 +147,30 @@ router.get('/:id', ProductController.getProductById);
  */
 router.get('/category/:category', ProductController.getProductsByCategory);
 
+/**
+ * @swagger
+ * /products/{id}:
+ *   delete:
+ *     summary: Delete a product by ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       204:
+ *         description: Product deleted successfully
+ *       404:
+ *         description: Product not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ */
+router.delete('/:id', ProductController.deleteProduct);
+
 export default router;
