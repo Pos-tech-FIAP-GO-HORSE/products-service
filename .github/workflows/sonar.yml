@@ -39,5 +39,5 @@ jobs:
             -Dsonar.organization=pos-tech-fiap-go-horse
             -Dsonar.projectKey=pos-tech-fiap-go-horse
             -Dsonar.sources=src
-            -Dsonar.tests=tests
+            -Dsonar.tests=src
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
