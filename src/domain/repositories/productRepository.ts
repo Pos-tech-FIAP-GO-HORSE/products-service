@@ -5,4 +5,5 @@ export interface ProductRepository {
   getAll(): Promise<Product[]>;
   getById(id: string): Promise<Product | null>;
   getByCategory(category: Product['category']): Promise<Product[]>;
+  delete(id: string): Promise<void>;
 }

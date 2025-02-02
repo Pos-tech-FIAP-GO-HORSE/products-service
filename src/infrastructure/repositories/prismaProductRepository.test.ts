@@ -7,11 +7,14 @@ jest.mock('@prisma/client');
 const mockCreate = jest.fn();
 const mockFindMany = jest.fn();
 const mockFindUnique = jest.fn();
+const mockDelete = jest.fn();
+
 const mockPrismaClient = {
   product: {
     create: mockCreate,
     findMany: mockFindMany,
     findUnique: mockFindUnique,
+    delete: mockDelete,
   },
 } as unknown as jest.Mocked<PrismaClient>;
 
@@ -101,5 +104,11 @@ describe('PrismaProductRepository', () => {
     expect(mockFindMany).toHaveBeenCalledWith({
       where: { category: 'Lanche' },
     });
+  });
+
+  it('should delete a product from the database', async () => {
+    await repository.delete('1');
+
+    expect(mockDelete).toHaveBeenCalledWith({ where: { id: '1' } });
   });
 });

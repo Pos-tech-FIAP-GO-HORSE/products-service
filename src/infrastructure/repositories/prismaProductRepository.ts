@@ -48,4 +48,10 @@ export class PrismaProductRepository implements ProductRepository {
       id: product.id.toString(),
     }));
   }
+
+  async delete(id: string): Promise<void> {
+    await this.prisma.product.delete({
+      where: { id: String(id) },
+    });
+  }
 }
