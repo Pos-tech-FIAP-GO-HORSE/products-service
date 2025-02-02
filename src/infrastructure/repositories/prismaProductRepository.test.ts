@@ -8,13 +8,14 @@ const mockCreate = jest.fn();
 const mockFindMany = jest.fn();
 const mockFindUnique = jest.fn();
 const mockDelete = jest.fn();
-
+const mockUpdate = jest.fn();
 const mockPrismaClient = {
   product: {
     create: mockCreate,
     findMany: mockFindMany,
     findUnique: mockFindUnique,
     delete: mockDelete,
+    update: mockUpdate,
   },
 } as unknown as jest.Mocked<PrismaClient>;
 
@@ -111,4 +112,24 @@ describe('PrismaProductRepository', () => {
 
     expect(mockDelete).toHaveBeenCalledWith({ where: { id: '1' } });
   });
+
+  it('should update a product in the database', async () => {
+    const input = {
+      name: 'X-Burger',
+      category: 'Lanche' as keyof typeof ProductCategoryType,
+      price: 10.5,
+    };
+
+    const updatedProduct = {
+      ...input,
+      id: '1',
+    };
+
+    mockUpdate.mockResolvedValueOnce(updatedProduct);
+
+    const result = await repository.update('1', input);
+
+    expect(result).toEqual(updatedProduct);
+    expect(mockUpdate).toHaveBeenCalledWith({ where: { id: '1' }, data: input });
+  }); 
 });
