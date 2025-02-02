@@ -14,5 +14,19 @@ services:
     volumes:
       - db_data:/var/lib/mysql
 
+  products-service:
+    image: postechfiap01/products-service:latest
+    container_name: products-service
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - MYSQL_HOST=database
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=admin123
+      - MYSQL_DATABASE=Product
+    depends_on:
+      - database
+
 volumes:
   db_data:

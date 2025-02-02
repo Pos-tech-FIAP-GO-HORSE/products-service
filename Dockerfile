@@ -3,7 +3,8 @@ FROM node:20
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
+
+RUN npm install --only=production
 
 COPY . .
 
@@ -11,5 +12,7 @@ RUN npm run build
 
 EXPOSE 3000
 
-# Start the app
+# Use a non-root user for security
+USER node
+
 CMD ["npm", "start"]
