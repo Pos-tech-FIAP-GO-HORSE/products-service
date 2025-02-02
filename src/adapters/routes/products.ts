@@ -173,4 +173,37 @@ router.get('/category/:category', ProductController.getProductsByCategory);
  */
 router.delete('/:id', ProductController.deleteProduct);
 
+/**
+ * @swagger
+ * /products/{id}:
+ *   put:
+ *     summary: Update a product by ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Product updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ *       404:
+ *         description: Product not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ */
+router.put('/:id', ProductController.updateProduct);
+
 export default router;
