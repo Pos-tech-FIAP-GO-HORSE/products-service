@@ -15,4 +15,37 @@ export class PrismaProductRepository implements ProductRepository {
       id: prismaProduct.id.toString(),
     };
   }
+
+  async getAll(): Promise<Product[]> {
+    const prismaProducts = await this.prisma.product.findMany();
+
+    return prismaProducts.map((product) => ({
+      ...product,
+      id: product.id.toString(),
+    }));
+  }
+
+  async getById(id: string): Promise<Product | null> {
+    const prismaProduct = await this.prisma.product.findUnique({
+      where: { id: String(id) },
+    });
+
+    return prismaProduct
+      ? {
+          ...prismaProduct,
+          id: prismaProduct.id.toString(),
+        }
+      : null;
+  }
+
+  async getByCategory(category: Product['category']): Promise<Product[]> {
+    const prismaProducts = await this.prisma.product.findMany({
+      where: { category },
+    });
+
+    return prismaProducts.map((product) => ({
+      ...product,
+      id: product.id.toString(),
+    }));
+  }
 }
