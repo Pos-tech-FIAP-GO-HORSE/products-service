@@ -4,7 +4,12 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install --only=production
+RUN npm install
+
+COPY prisma ./prisma
+
+# Generate Prisma Client for the container environment
+RUN npx prisma generate
 
 COPY . .
 
