@@ -8,6 +8,7 @@ import { DeleteProductUseCase } from '../../usecases/deleteProductUseCase';
 import type { ProductCategoryType } from '../../domain/entities/product';
 import { HTTP_STATUS } from '../../constants/httpStatusCodes';
 import { MESSAGES } from '../../constants/messages';
+import { UpdateProductUseCase } from '../../usecases/updateProductUseCase';
 
 const productRepository = new PrismaProductRepository();
 const createProductUseCase = new CreateProductUseCase(productRepository);
@@ -17,6 +18,7 @@ const getProductsByCategoryUseCase = new GetProductsByCategoryUseCase(
   productRepository,
 );
 const deleteProductUseCase = new DeleteProductUseCase(productRepository);
+const updateProductUseCase = new UpdateProductUseCase(productRepository);
 
 async function createProduct(req: Request, res: Response) {
   try {
@@ -106,10 +108,29 @@ async function deleteProduct(req: Request, res: Response) {
   }
 }
 
+async function updateProduct(req: Request, res: Response) {
+  try {
+    const { id } = req.params;
+    const productData = req.body;
+    const product = await updateProductUseCase.execute(id, productData);
+
+    res.status(HTTP_STATUS.OK).json({
+      message: MESSAGES.PRODUCT_UPDATED,
+      product,
+    });
+  } catch (error) {
+    res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({
+      message: MESSAGES.ERROR_UPDATING_PRODUCT,
+      error: (error as Error).message,
+    });
+  }
+}
+
 export const ProductController = {
   createProduct,
   getAllProducts,
   getProductById,
   getProductsByCategory,
   deleteProduct,
+  updateProduct,
 };

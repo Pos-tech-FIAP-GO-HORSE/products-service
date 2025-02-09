@@ -5,4 +5,6 @@ export const MESSAGES = {
   ERROR_FETCHING_PRODUCT: 'Error fetching product',
   PRODUCT_NOT_FOUND: 'Product not found',
   ERROR_DELETING_PRODUCT: 'Error deleting product',
+  ERROR_UPDATING_PRODUCT: 'Error updating product',
+  PRODUCT_UPDATED: 'Product updated successfully',
 } as const;

@@ -6,4 +6,5 @@ export interface ProductRepository {
   getById(id: string): Promise<Product | null>;
   getByCategory(category: Product['category']): Promise<Product[]>;
   delete(id: string): Promise<void>;
+  update(id: string, product: Partial<Product>): Promise<Product>;
 }
