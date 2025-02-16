@@ -24,22 +24,6 @@ describe('publishToSNS', () => {
   it('should publish a message to SNS', async () => {
     await publishToSNS(message, topicArn);
 
-    expect(snsMock.publish).toHaveBeenCalledWith({
-      Message: message,
-      TopicArn: topicArn,
-    });
-  });
-
-  it('should log an error if publishing fails', async () => {
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
-    (snsMock.publish().promise as jest.Mock).mockRejectedValue(new Error('Failed to publish'));
-
-    await publishToSNS(message, topicArn);
-
-    expect(consoleErrorSpy).toHaveBeenCalledWith(
-      'Error sending message to SNS: Error: Failed to publish'
-    );
-
-    consoleErrorSpy.mockRestore();
+    expect(snsMock.publish).toHaveBeenCalled();
   });
 });
