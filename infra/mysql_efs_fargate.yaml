@@ -1,0 +1,70 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: default
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: mysql
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: admin123
+            - name: MYSQL_DATABASE
+              value: Product
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: efs-storage
+      volumes:
+        - name: efs-storage
+          persistentVolumeClaim:
+            claimName: efs-mysql-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-mysql-pvc
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: efs-sc
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: efs-sc
+provisioner: efs.csi.aws.com
+parameters:
+  fileSystemId: fs-03d19568ab29cba44
+  directoryPerms: "755"
+  gid: "1000"
+  uid: "1000"
+  provisioningMode: efs-ap
+  accessPointId: fsap-08df5a969cc44dbce
+volumeBindingMode: Immediate
