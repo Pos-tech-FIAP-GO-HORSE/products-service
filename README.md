@@ -132,7 +132,7 @@ npx prisma studio
 
 80% of the code is covered by tests.
 
-![Test Coverage](./coverage.png)
+![Test Coverage](./coverage-report.png)
 
 ### Swagger
 
