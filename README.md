@@ -130,7 +130,7 @@ npx prisma studio
 
 ## Test Coverage
 
-80% of the code is covered by tests.
+87.5% of the code is covered by tests.
 
 ![Test Coverage](./coverage-report.png)
 
