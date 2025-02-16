@@ -40,4 +40,5 @@ jobs:
             -Dsonar.projectKey=Pos-tech-FIAP-GO-HORSE_products-service
             -Dsonar.sources=src
             -Dsonar.tests=src
+            -Dsonar.exclusions=**/*.spec.ts,**/*.test.ts
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
