@@ -36,7 +36,7 @@ async function createProduct(req: Request, res: Response) {
         message: MESSAGES.PRODUCT_CREATED,
         product,
       }),
-      process.env.SNS_TOPIC_ARN_CREATED || '',
+      process.env.SNS_TOPIC_ARN_CREATED ?? '',
     );
   } catch (error) {
     res.status(HTTP_STATUS.BAD_REQUEST).json({
@@ -115,7 +115,7 @@ async function deleteProduct(req: Request, res: Response) {
         message: MESSAGES.PRODUCT_DELETED,
         id,
       }),
-      process.env.SNS_TOPIC_ARN_DELETED || '',
+      process.env.SNS_TOPIC_ARN_DELETED ?? '',
     );
   } catch (error) {
     res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({
@@ -141,7 +141,7 @@ async function updateProduct(req: Request, res: Response) {
         message: MESSAGES.PRODUCT_UPDATED,
         product,
       }),
-      process.env.SNS_TOPIC_ARN_UPDATED || '',
+      process.env.SNS_TOPIC_ARN_UPDATED ?? '',
     );
   } catch (error) {
     res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({
