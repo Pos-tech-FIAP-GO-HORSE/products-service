@@ -7,4 +7,5 @@ export const MESSAGES = {
   ERROR_DELETING_PRODUCT: 'Error deleting product',
   ERROR_UPDATING_PRODUCT: 'Error updating product',
   PRODUCT_UPDATED: 'Product updated successfully',
+  PRODUCT_DELETED: 'Product deleted successfully',
 } as const;
