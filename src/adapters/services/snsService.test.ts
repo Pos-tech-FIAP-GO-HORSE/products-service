@@ -2,6 +2,9 @@ import { publishToSNS } from './snsService';
 import AWS from 'aws-sdk';
 
 jest.mock('aws-sdk', () => ({
+  config: {
+    update: jest.fn(),
+  },
   SNS: jest.fn(() => ({
     publish: jest.fn().mockReturnThis(),
     promise: jest.fn(),
