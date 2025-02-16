@@ -4,6 +4,14 @@
 
 This is a microservice for managing products.
 
+## Table of Contents
+
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Test Coverage](#test-coverage)
+- [Swagger](#swagger)
+- [Maintainers](#maintainers)
+
 ## Technologies
 
 - Node.js
@@ -14,7 +22,8 @@ This is a microservice for managing products.
 - Docker
 - Swagger
 
-## Installation
+<details>
+<summary>Installation</summary>
 
 ### Prerequisites
 
@@ -116,3 +125,24 @@ We can use Prisma Studio to explore and edit the database:
 ```
 npx prisma studio
 ```
+
+</details>
+
+## Test Coverage
+
+80% of the code is covered by tests.
+
+![Test Coverage](./coverage.png)
+
+### Swagger
+
+The Swagger is available on the path `/api-docs`.
+
+## Maintainers
+
+| Member                        | Info     |
+| ----------------------------- | -------- |
+| Caio Martins Pereira          | RM357712 |
+| Rafael de Souza Ribeiro       | RM357622 |
+| Thaís Oliveira de Moura       | RM357737 |
+| Victor Toschi                 | RM356847 |
