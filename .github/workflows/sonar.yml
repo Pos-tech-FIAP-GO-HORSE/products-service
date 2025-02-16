@@ -36,8 +36,8 @@ jobs:
         with:
           projectBaseDir: .
           args: >
-            -Dsonar.organization=pos-tech-fiap-go-horse
-            -Dsonar.projectKey=pos-tech-fiap-go-horse
+            -Dsonar.organization=pos-tech-fiap-go-horse-1
+            -Dsonar.projectKey=Pos-tech-FIAP-GO-HORSE_products-service
             -Dsonar.sources=src
             -Dsonar.tests=src
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
