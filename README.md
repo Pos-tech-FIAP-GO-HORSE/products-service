@@ -22,6 +22,8 @@ This is a microservice for managing products.
 - Docker
 - Swagger
 
+## Installation
+
 <details>
 <summary>Installation</summary>
 
