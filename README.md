@@ -12,6 +12,10 @@ This is a microservice for managing products.
 - [Swagger](#swagger)
 - [Maintainers](#maintainers)
 
+## Video
+
+[Video](./docs/products-microservice.mp4)
+
 ## Technologies
 
 - Node.js
@@ -134,7 +138,7 @@ npx prisma studio
 
 87.5% of the code is covered by tests.
 
-![Test Coverage](./coverage-report.png)
+![Test Coverage](./docs/coverage-report.png)
 
 ### Swagger
 
