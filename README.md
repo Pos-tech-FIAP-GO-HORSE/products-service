@@ -14,7 +14,7 @@ This is a microservice for managing products.
 
 ## Video
 
-[Video](./docs/products-microservice.mp4)
+[Video](https://drive.google.com/file/d/1Gh_E7N1_6B1MTIXelE_Q2IdiFnqT_qUL/view?usp=sharing)
 
 ## Technologies
 
